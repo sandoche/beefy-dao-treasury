@@ -90,11 +90,17 @@ export default function Treasury() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar>
+        <div className="text-right items-center rounded-sm border border-transparent bg-brand px-4 py-2 text-reverse">
+          <p className="text-xs">{treasuryStrings.total}</p>
+          <p className="text-sm">
+            $ <strong>{computedPortfolio.total}</strong>
+          </p>
+        </div>
+      </Navbar>
       <section>
         <Container>
           <>
-            <p>{computedPortfolio.total} USD</p>
             {Object.keys(computedPortfolio.venues).map((venueId) => (
               <Venue
                 key={venueId}
