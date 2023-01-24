@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-background-default: #d8d2c3;
+  --color-text-default: #2b2b2b;
+}
+
+body {
+  background-color: var(--color-background-default);
+  color: var(--color-text-default);
+}
