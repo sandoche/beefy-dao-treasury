@@ -15,7 +15,9 @@ export default function VenueToken({ tickerId, tokenBalance }: Props) {
         <p>
           {tokenBalance.amount.toFixed(config.decimals)} {tickerId}
         </p>
-        <p>~ {tokenBalance.valueInUsd.toFixed(config.decimals)} USD</p>
+        <p className="text-sm text-lighttext">
+          ≈ {tokenBalance.valueInUsd.toFixed(config.decimals)} USD
+        </p>
       </div>
     </div>
   );
