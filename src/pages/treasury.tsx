@@ -10,17 +10,19 @@ import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import {
   useQuery,
   // useMutation,
-  useQueryClient,
+  // useQueryClient,
   // QueryClient,
   // QueryClientProvider,
 } from "react-query";
 import { getBalances } from "@/services/beefyApiService";
+import config from "@/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Treasury() {
-  const queryClient = useQueryClient();
-  const { data: balanceState } = useQuery("portfolioBalance", getBalances);
+  const { data: balanceState } = useQuery("portfolioBalance", getBalances, {
+    refetchInterval: config.pollingIntervalInMs,
+  });
 
   const temporaryExchangeRates = {
     USDT: 1,
