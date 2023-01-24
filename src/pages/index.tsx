@@ -21,10 +21,16 @@ export default function Home() {
       <Navbar />
       <section>
         <Container>
-          <>
-            <h1 className="text-3xl font-bold">{homeStrings.headline}</h1>
-            <Link href="/treasury">{homeStrings.button}</Link>
-          </>
+          <div className="w-3/4 py-32">
+            <h1 className="text-5xl font-bold mb-8">{homeStrings.headline}</h1>
+            <p className="text-xl mb-8">{homeStrings.description}</p>
+            <Link
+              href="/treasury"
+              className="inline-flex items-center rounded-md border border-transparent bg-brand px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2"
+            >
+              {homeStrings.button}
+            </Link>
+          </div>
         </Container>
       </section>
     </>
