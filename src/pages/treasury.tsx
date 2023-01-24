@@ -13,6 +13,7 @@ import { getConversionRates } from "@/services/coingeckoApiService";
 import config from "@/config";
 import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
 import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function Treasury() {
     refetchInterval: config.pollingIntervalInMs,
   });
 
-  const { data: exchangeRates } = useQuery(
+  const { data: exchangeRates, refetch } = useQuery(
     "exchangeRates",
     () => getConversionRates(computedPortfolio.tokenIds),
     {
@@ -74,6 +75,12 @@ export default function Treasury() {
     balanceState,
     exchangeRates
   );
+
+  useEffect(() => {
+    setTimeout(() => {
+      refetch();
+    }, 1000);
+  }, [refetch]);
 
   return (
     <>
