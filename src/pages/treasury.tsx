@@ -7,15 +7,12 @@ import treasuryStrings from "@/locales/en/treasury";
 import Venue from "@/components/treasury/Venue";
 import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
-import {
-  useQuery,
-  // useMutation,
-  // useQueryClient,
-  // QueryClient,
-  // QueryClientProvider,
-} from "react-query";
+import { useQuery } from "react-query";
 import { getBalances } from "@/services/beefyApiService";
+import { getConversionRates } from "@/services/coingeckoApiService";
 import config from "@/config";
+import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
+import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,20 +21,23 @@ export default function Treasury() {
     refetchInterval: config.pollingIntervalInMs,
   });
 
-  const temporaryExchangeRates = {
-    USDT: 1,
-    BUSD: 1.0001,
-    BIFI: 2,
-    FTM: 0.3,
-    LTC: 0.1,
-    USD: 1,
-  };
+  const { data: exchangeRates } = useQuery(
+    "exchangeRates",
+    () => getConversionRates(computedPortfolio.tokenIds),
+    {
+      refetchInterval: config.pollingIntervalInMs,
+    }
+  );
 
   const computePortfolioToGetBalances = (
     balanceState: BeefyBalancesResponse | undefined,
-    temporaryExchangeRates: any
+    exchangeRates: CoingeckoConversionRatesResponse | undefined
   ): ComputedPortfolio => {
-    const portfolio: ComputedPortfolio = { total: 0, venues: {} };
+    const portfolio: ComputedPortfolio = {
+      total: 0,
+      venues: {},
+      tokenIds: new Set(),
+    };
 
     for (const venueId in balanceState) {
       const venuePortfolio = balanceState[venueId];
@@ -45,9 +45,17 @@ export default function Treasury() {
 
       for (const tickerId in venuePortfolio) {
         const tokenBalance = venuePortfolio[tickerId];
-        const tokenExchangeRate = temporaryExchangeRates[tickerId];
+        const tokenId = getTokenIdFromTicker(tickerId);
+        const tokenExchangeRate =
+          tokenId && exchangeRates && exchangeRates[tokenId]
+            ? exchangeRates[tokenId].usd
+            : 0;
 
         const valueInUsd = tokenBalance * tokenExchangeRate;
+
+        if (tokenId) {
+          portfolio.tokenIds.add(tokenId);
+        }
 
         portfolio.venues[venueId].tokens[tickerId] = {
           amount: tokenBalance,
@@ -64,7 +72,7 @@ export default function Treasury() {
 
   const computedPortfolio = computePortfolioToGetBalances(
     balanceState,
-    temporaryExchangeRates
+    exchangeRates
   );
 
   return (

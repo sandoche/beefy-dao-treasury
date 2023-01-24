@@ -8,7 +8,7 @@ const tickerToId: { [key: string]: string } = {
   LTC: "litecoin",
 };
 
-const getTokenIdFromTicker = async (ticker: string) => {
+const getTokenIdFromTicker = (ticker: string) => {
   return tickerToId[ticker] || null;
 };
 

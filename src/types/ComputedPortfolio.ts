@@ -1,5 +1,6 @@
 type ComputedPortfolio = {
   total: number;
+  tokenIds: Set<string>;
   venues: {
     [venueId: string]: {
       total: number;
