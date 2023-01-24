@@ -4,10 +4,12 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <Container>
-      <nav>
-        <Link href="/">{sharedStrings.title}</Link>
-      </nav>
-    </Container>
+    <nav className="py-6 border-b border-brand mb-8">
+      <Container>
+        <Link href="/" className="text-xl uppercase">
+          (₿) {sharedStrings.title}
+        </Link>
+      </Container>
+    </nav>
   );
 }
