@@ -7,32 +7,20 @@ import treasuryStrings from "@/locales/en/treasury";
 import Venue from "@/components/treasury/Venue";
 import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
+import {
+  useQuery,
+  // useMutation,
+  useQueryClient,
+  // QueryClient,
+  // QueryClientProvider,
+} from "react-query";
+import { getBalances } from "@/services/beefyApiService";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Treasury() {
-  const temporaryBalanceState: BeefyBalancesResponse = {
-    binance: {
-      USDT: 98055.63063417,
-      BUSD: 82768.6168948,
-      BIFI: 154.9413044,
-    },
-    felix: {
-      BIFI: 87.87950109,
-      FTM: 21852.19008471,
-      USDT: 7272.5246663,
-    },
-    cryptocom: {
-      LTC: 0.95966592,
-      BIFI: 80.9602725,
-      USDT: 0.00290985,
-      USD: 8250.4185,
-    },
-    bitrue: {
-      USDT: 41375.86,
-      BIFI: 29.418,
-    },
-  };
+  const queryClient = useQueryClient();
+  const { data: balanceState } = useQuery("portfolioBalance", getBalances);
 
   const temporaryExchangeRates = {
     USDT: 1,
@@ -44,13 +32,13 @@ export default function Treasury() {
   };
 
   const computePortfolioToGetBalances = (
-    temporaryBalanceState: BeefyBalancesResponse,
+    balanceState: BeefyBalancesResponse | undefined,
     temporaryExchangeRates: any
   ): ComputedPortfolio => {
     const portfolio: ComputedPortfolio = { total: 0, venues: {} };
 
-    for (const venueId in temporaryBalanceState) {
-      const venuePortfolio = temporaryBalanceState[venueId];
+    for (const venueId in balanceState) {
+      const venuePortfolio = balanceState[venueId];
       portfolio.venues[venueId] = { total: 0, tokens: {} };
 
       for (const tickerId in venuePortfolio) {
@@ -73,7 +61,7 @@ export default function Treasury() {
   };
 
   const computedPortfolio = computePortfolioToGetBalances(
-    temporaryBalanceState,
+    balanceState,
     temporaryExchangeRates
   );
 
