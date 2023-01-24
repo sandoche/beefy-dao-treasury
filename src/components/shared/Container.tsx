@@ -3,5 +3,5 @@ interface Props {
 }
 
 export default function Container({ children }: Props) {
-  return <div className="w-auto max-w-2xl">{children}</div>;
+  return <div className="container mx-auto px-4">{children}</div>;
 }
