@@ -94,7 +94,7 @@ export default function Treasury() {
         <div className="text-right items-center rounded-sm border border-transparent bg-brand px-4 py-2 text-reverse">
           <p className="text-xs">{treasuryStrings.total}</p>
           <p className="text-sm">
-            $ <strong>{computedPortfolio.total}</strong>
+            <strong>{computedPortfolio.total}</strong> USD
           </p>
         </div>
       </Navbar>
