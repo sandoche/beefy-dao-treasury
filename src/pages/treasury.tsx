@@ -100,7 +100,7 @@ export default function Treasury() {
       </Navbar>
       <section>
         <Container>
-          <>
+          <div className="mb-32">
             {Object.keys(computedPortfolio.venues).map((venueId) => (
               <Venue
                 key={venueId}
@@ -109,7 +109,7 @@ export default function Treasury() {
                 total={computedPortfolio.venues[venueId].total}
               />
             ))}
-          </>
+          </div>
         </Container>
       </section>
     </>
