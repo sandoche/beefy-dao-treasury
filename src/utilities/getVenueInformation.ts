@@ -1,4 +1,4 @@
-import type VenueInformation from "../types/VenueInformation";
+import type VenueInformation from "@/types/VenueInformation";
 
 const venues: { [key: string]: VenueInformation } = {
   binance: {

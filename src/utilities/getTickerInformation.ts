@@ -1,4 +1,4 @@
-import type TokenInformation from "../types/TokenInformation";
+import type TokenInformation from "@/types/TokenInformation";
 
 const tickers: { [key: string]: TokenInformation } = {
   USDT: {
