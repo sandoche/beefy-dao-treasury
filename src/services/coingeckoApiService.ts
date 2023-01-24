@@ -10,7 +10,14 @@ const getConversionRates = async (
   const response = await fetch(
     `${API_URL}/simple/price?ids=${stringifiedCoinIds}&vs_currencies=usd`
   );
-  return response.json();
+  const data = await response.json();
+
+  return {
+    ...data,
+    usd: {
+      usd: 1,
+    },
+  };
 };
 
 export { getConversionRates };

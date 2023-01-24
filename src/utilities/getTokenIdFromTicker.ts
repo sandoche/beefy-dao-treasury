@@ -6,6 +6,7 @@ const tickerToId: { [key: string]: string } = {
   USDT: "tether",
   FTM: "fantom",
   LTC: "litecoin",
+  USD: "usd",
 };
 
 const getTokenIdFromTicker = (ticker: string) => {
