@@ -7,6 +7,18 @@ const tickers: { [key: string]: TokenInformation } = {
   BUSD: {
     name: "Binance USD",
   },
+  USDC: {
+    name: "USD Coin",
+  },
+  BIFI: {
+    name: "Beefy Finance",
+  },
+  FTM: {
+    name: "Fantom",
+  },
+  LTC: {
+    name: "Litecoin",
+  },
 };
 
 const getTickerInformation = (ticker: string): TokenInformation => {

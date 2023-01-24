@@ -1,4 +1,6 @@
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
+import getTickerInformation from "@/utilities/getTickerInformation";
+import config from "@/config";
 
 interface Props {
   tickerId: string;
@@ -7,10 +9,14 @@ interface Props {
 
 export default function VenueToken({ tickerId, tokenBalance }: Props) {
   return (
-    <div className="border-t bg-card px-4 py-5 sm:px-6 border-1 border-borders">
-      <h3>{tickerId}</h3>
-      <p>{tokenBalance.amount}</p>
-      <p>{tokenBalance.valueInUsd}</p>
+    <div className="border-t bg-card px-4 py-5 sm:px-6 border-1 border-borders flex justify-between items-center">
+      <h3 className="text-lg">{getTickerInformation(tickerId).name}</h3>
+      <div className="text-right">
+        <p>
+          {tokenBalance.amount.toFixed(config.decimals)} {tickerId}
+        </p>
+        <p>~ {tokenBalance.valueInUsd.toFixed(config.decimals)} USD</p>
+      </div>
     </div>
   );
 }

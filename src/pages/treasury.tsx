@@ -3,7 +3,6 @@ import { Inter } from "@next/font/google";
 import sharedStrings from "@/locales/en/shared";
 import Navbar from "@/components/shared/Navbar";
 import Container from "@/components/shared/Container";
-import treasuryStrings from "@/locales/en/treasury";
 import Venue from "@/components/treasury/Venue";
 import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
@@ -91,10 +90,10 @@ export default function Treasury() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar>
-        <div className="text-right items-center rounded-sm border border-transparent bg-brand px-4 py-2 text-reverse">
-          <p className="text-xs">{treasuryStrings.total}</p>
-          <p className="text-sm">
-            <strong>{computedPortfolio.total}</strong> USD
+        <div className="text-right items-center rounded-md border border-transparent bg-brand px-4 py-2 text-reverse">
+          <p className="text-xl">
+            <strong>{computedPortfolio.total.toFixed(config.decimals)}</strong>{" "}
+            USD
           </p>
         </div>
       </Navbar>

@@ -1,6 +1,7 @@
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import VenueToken from "@/components/treasury/VenueToken";
 import getVenueInformation from "@/utilities/getVenueInformation";
+import config from "@/config";
 
 interface Props {
   venueId: string;
@@ -19,8 +20,8 @@ export default function Venue({ venueId, venuePortfolio, total }: Props) {
             </h2>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-            <span className="relative inline-flex items-center rounded-md px-4 py-2 text-sm font-medium bg-borders">
-              {total} USD
+            <span className="relative inline-flex items-center rounded-md px-4 py-2 text-lg font-medium bg-borders">
+              {total.toFixed(config.decimals)} USD
             </span>
           </div>
         </div>
