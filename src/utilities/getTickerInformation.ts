@@ -10,7 +10,7 @@ const tickers: { [key: string]: TokenInformation } = {
 };
 
 const getTickerInformation = (ticker: string): TokenInformation => {
-  return tickers[ticker] || { name: "Unknown" };
+  return tickers[ticker] || { name: ticker };
 };
 
 export default getTickerInformation;

@@ -16,7 +16,7 @@ const venues: { [key: string]: VenueInformation } = {
 };
 
 const getVenueInformation = (venue: string): VenueInformation => {
-  return venues[venue] || { name: "Unknown" };
+  return venues[venue] || { name: venue };
 };
 
 export default getVenueInformation;
