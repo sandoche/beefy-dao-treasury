@@ -3,7 +3,7 @@ import Container from "@/components/shared/Container";
 import Link from "next/link";
 
 interface Props {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 export default function Navbar({ children }: Props) {
