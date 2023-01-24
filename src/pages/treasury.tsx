@@ -99,7 +99,7 @@ export default function Treasury() {
       </Navbar>
       <section>
         <Container>
-          <div className="mb-32">
+          <div className="columns-1 lg:columns-2">
             {Object.keys(computedPortfolio.venues).map((venueId) => (
               <Venue
                 key={venueId}

@@ -11,7 +11,7 @@ interface Props {
 
 export default function Venue({ venueId, venuePortfolio, total }: Props) {
   return (
-    <div className="overflow-hidden bg-white shadow sm:rounded-md mt-4">
+    <div className="overflow-hidden bg-white shadow sm:rounded-md mb-4">
       <div className="bg-card px-4 py-5 sm:px-6 border-1">
         <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-2">

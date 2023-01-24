@@ -21,7 +21,7 @@ export default function Home() {
       <Navbar />
       <section>
         <Container>
-          <div className="w-3/4 py-32">
+          <div className=" w-full md:w-3/4 py-32">
             <h1 className="text-5xl font-bold mb-8">{homeStrings.headline}</h1>
             <p className="text-xl mb-8">{homeStrings.description}</p>
             <Link
