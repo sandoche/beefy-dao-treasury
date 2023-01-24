@@ -11,7 +11,7 @@ interface Props {
 export default function Venue({ venueId, venuePortfolio, total }: Props) {
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-md mt-4">
-      <div className="border-b border-card bg-card px-4 py-5 sm:px-6">
+      <div className="border-b border-card bg-card px-4 py-5 sm:px-6 border-1 border-brand">
         <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-2">
             <h2 className="text-lg font-medium leading-6 text-gray-900">
@@ -24,15 +24,15 @@ export default function Venue({ venueId, venuePortfolio, total }: Props) {
             </span>
           </div>
         </div>
-        <div>
-          {Object.keys(venuePortfolio.tokens).map((tickerId) => (
-            <VenueToken
-              key={tickerId}
-              tickerId={tickerId}
-              tokenBalance={venuePortfolio.tokens[tickerId]}
-            />
-          ))}
-        </div>
+      </div>
+      <div>
+        {Object.keys(venuePortfolio.tokens).map((tickerId) => (
+          <VenueToken
+            key={tickerId}
+            tickerId={tickerId}
+            tokenBalance={venuePortfolio.tokens[tickerId]}
+          />
+        ))}
       </div>
     </div>
   );
