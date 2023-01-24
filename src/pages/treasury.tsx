@@ -6,6 +6,7 @@ import Container from "@/components/shared/Container";
 import treasuryStrings from "@/locales/en/treasury";
 import Venue from "@/components/treasury/Venue";
 import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
+import type ComputedPortfolio from "@/types/ComputedPortfolio";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +43,40 @@ export default function Treasury() {
     USD: 1,
   };
 
+  const computePortfolioToGetBalances = (
+    temporaryBalanceState: BeefyBalancesResponse,
+    temporaryExchangeRates: any
+  ): ComputedPortfolio => {
+    const portfolio: ComputedPortfolio = { total: 0, venues: {} };
+
+    for (const venueId in temporaryBalanceState) {
+      const venuePortfolio = temporaryBalanceState[venueId];
+      portfolio.venues[venueId] = { total: 0, tokens: {} };
+
+      for (const tickerId in venuePortfolio) {
+        const tokenBalance = venuePortfolio[tickerId];
+        const tokenExchangeRate = temporaryExchangeRates[tickerId];
+
+        const valueInUsd = tokenBalance * tokenExchangeRate;
+
+        portfolio.venues[venueId].tokens[tickerId] = {
+          amount: tokenBalance,
+          valueInUsd,
+        };
+
+        portfolio.venues[venueId].total =
+          (portfolio.venues[venueId].total ?? 0) + valueInUsd;
+        portfolio.total = portfolio.total + valueInUsd;
+      }
+    }
+    return portfolio;
+  };
+
+  const computedPortfolio = computePortfolioToGetBalances(
+    temporaryBalanceState,
+    temporaryExchangeRates
+  );
+
   return (
     <>
       <Head>
@@ -54,11 +89,13 @@ export default function Treasury() {
       <section>
         <Container>
           <>
-            {Object.keys(temporaryBalanceState).map((venueId) => (
+            <p>{computedPortfolio.total} USD</p>
+            {Object.keys(computedPortfolio.venues).map((venueId) => (
               <Venue
                 key={venueId}
                 venueId={venueId}
-                venuePortfolio={temporaryBalanceState[venueId]}
+                venuePortfolio={computedPortfolio.venues[venueId]}
+                total={computedPortfolio.venues[venueId].total}
               />
             ))}
           </>

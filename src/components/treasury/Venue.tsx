@@ -1,20 +1,23 @@
-import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
+import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import VenueToken from "@/components/treasury/VenueToken";
 
 interface Props {
   venueId: string;
-  venuePortfolio: BeefyBalancesResponse[string];
+  venuePortfolio: ComputedPortfolio["venues"][string];
+  total: number;
 }
 
-export default function Venue({ venueId, venuePortfolio }: Props) {
+export default function Venue({ venueId, venuePortfolio, total }: Props) {
   return (
     <div>
-      <h2>{venueId}</h2>
-      {Object.keys(venuePortfolio).map((tickerId) => (
+      <h2>
+        {venueId} / {total} USD
+      </h2>
+      {Object.keys(venuePortfolio.tokens).map((tickerId) => (
         <VenueToken
           key={tickerId}
           tickerId={tickerId}
-          tokenBalance={venuePortfolio[tickerId]}
+          tokenBalance={venuePortfolio.tokens[tickerId]}
         />
       ))}
     </div>
