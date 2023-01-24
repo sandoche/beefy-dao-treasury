@@ -12,13 +12,20 @@ import { getConversionRates } from "@/services/coingeckoApiService";
 import config from "@/config";
 import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
 import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Treasury() {
+  const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
+
   const { data: balanceState } = useQuery("portfolioBalance", getBalances, {
     refetchInterval: config.pollingIntervalInMs,
+    onSuccess: () => {
+      if (numberOfApiCallsMade < 2) {
+        setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
+      }
+    },
   });
 
   const { data: exchangeRates, refetch } = useQuery(
@@ -26,6 +33,11 @@ export default function Treasury() {
     () => getConversionRates(computedPortfolio.tokenIds),
     {
       refetchInterval: config.pollingIntervalInMs,
+      onSuccess: () => {
+        if (numberOfApiCallsMade < 2) {
+          setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
+        }
+      },
     }
   );
 
@@ -76,10 +88,10 @@ export default function Treasury() {
   );
 
   useEffect(() => {
-    setTimeout(() => {
+    if (numberOfApiCallsMade >= 2) {
       refetch();
-    }, 1000);
-  }, [refetch]);
+    }
+  }, [numberOfApiCallsMade, refetch]);
 
   return (
     <>
