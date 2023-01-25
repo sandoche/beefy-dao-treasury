@@ -15,12 +15,15 @@ import withReactContent from "sweetalert2-react-content";
 import treasuryStrings from "@/locales/en/treasury";
 import Spinner from "@/components/shared/Spinner";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticProps } from "next";
 import createIndexOfCoinsInformation from "@/utilities/createIndexOfCoinsInformation";
+import type CoinsInformation from "@/types/CoinInformation";
 
-export default function Treasury({
-  coinsInformation,
-}): InferGetStaticPropsType<typeof getStaticProps> {
+type Props = {
+  coinsInformation: CoinsInformation;
+};
+
+export default function Treasury({ coinsInformation }: Props) {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
