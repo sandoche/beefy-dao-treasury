@@ -1,7 +1,6 @@
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import getTickerInformation from "@/utilities/getTickerInformation";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
-import CoinInformationIndex from "@/types/CoinInformationIndex";
 import { useContext } from "react";
 import BeefyContext from "@/context/BeefyContext";
 
