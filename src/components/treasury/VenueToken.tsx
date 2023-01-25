@@ -19,13 +19,13 @@ export default function VenueToken({
       <h3 className="text-lg">{getTickerInformation(tickerId).name}</h3>
       <div className="text-right">
         <p>
-          {tokenBalance.amount.toFixed(config.decimals)} {tickerId}
+          {tokenBalance.amount.toLocaleString()} {tickerId}
         </p>
         {isExchangeRateLoading ? (
           <LoadingPlaceholder />
         ) : (
           <p className="text-sm text-lighttext">
-            ≈ {tokenBalance.valueInUsd.toFixed(config.decimals)} USD
+            ≈ {tokenBalance.valueInUsd.toLocaleString()} USD
           </p>
         )}
       </div>

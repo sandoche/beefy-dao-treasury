@@ -31,7 +31,7 @@ export default function Venue({
               <LoadingPlaceholder width="100px" />
             ) : (
               <span className="relative inline-flex items-center rounded-md px-4 py-2 md:text-lg font-medium bg-borders">
-                {total.toFixed(config.decimals)} USD
+                {total.toLocaleString()} USD
               </span>
             )}
           </div>
