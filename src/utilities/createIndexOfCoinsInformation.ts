@@ -1,8 +1,8 @@
 import coinInformations from "@/data/coingeckocoins.json";
-import type CoinInformation from "@/types/CoinInformation";
+import type CoinInformationIndex from "@/types/CoinInformationIndex";
 
-const createIndexOfCoinsInformation = (): CoinInformation => {
-  const indexOfCoinInformation: CoinInformation = {};
+const createIndexOfCoinsInformation = (): CoinInformationIndex => {
+  const indexOfCoinInformation: CoinInformationIndex = {};
 
   for (const coin of coinInformations) {
     indexOfCoinInformation[coin.symbol.toUpperCase()] = {

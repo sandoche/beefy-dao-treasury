@@ -17,13 +17,13 @@ import Spinner from "@/components/shared/Spinner";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 import type { GetStaticProps } from "next";
 import createIndexOfCoinsInformation from "@/utilities/createIndexOfCoinsInformation";
-import type CoinsInformation from "@/types/CoinInformation";
+import type CoinInformationIndex from "@/types/CoinInformationIndex";
 
 type Props = {
-  coinsInformation: CoinsInformation;
+  coinInformationIndex: CoinInformationIndex;
 };
 
-export default function Treasury({ coinsInformation }: Props) {
+export default function Treasury({ coinInformationIndex }: Props) {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
@@ -85,7 +85,7 @@ export default function Treasury({ coinsInformation }: Props) {
 
       for (const tickerId in venuePortfolio) {
         const tokenBalance = venuePortfolio[tickerId];
-        const tokenId = getTokenIdFromTicker(tickerId, coinsInformation);
+        const tokenId = getTokenIdFromTicker(tickerId, coinInformationIndex);
         const tokenExchangeRate =
           tokenId && exchangeRates && exchangeRates[tokenId]
             ? exchangeRates[tokenId].usd
@@ -151,6 +151,7 @@ export default function Treasury({ coinsInformation }: Props) {
                 venuePortfolio={computedPortfolio.venues[venueId]}
                 total={computedPortfolio.venues[venueId].total}
                 isExchangeRateLoading={isExchangeRateLoading}
+                coinInformationIndex={coinInformationIndex}
               />
             ))}
           </div>
@@ -161,11 +162,11 @@ export default function Treasury({ coinsInformation }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const coinsInformation = createIndexOfCoinsInformation();
+  const coinInformationIndex = createIndexOfCoinsInformation();
 
   return {
     props: {
-      coinsInformation,
+      coinInformationIndex,
     },
   };
 };

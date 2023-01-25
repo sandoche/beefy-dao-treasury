@@ -1,6 +1,6 @@
-import type CoinInformation from "@/types/CoinInformation";
+import type CoinInformationIndex from "@/types/CoinInformationIndex";
 
-const getTokenIdFromTicker = (ticker: string, index: CoinInformation) => {
+const getTokenIdFromTicker = (ticker: string, index: CoinInformationIndex) => {
   return index[ticker]?.id || null;
 };
 

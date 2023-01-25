@@ -1,14 +1,15 @@
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import VenueToken from "@/components/treasury/VenueToken";
 import getVenueInformation from "@/utilities/getVenueInformation";
-import config from "@/config";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
+import CoinInformationIndex from "@/types/CoinInformationIndex";
 
 interface Props {
   venueId: string;
   venuePortfolio: ComputedPortfolio["venues"][string];
   total: number;
   isExchangeRateLoading: boolean;
+  coinInformationIndex: CoinInformationIndex;
 }
 
 export default function Venue({
@@ -16,6 +17,7 @@ export default function Venue({
   venuePortfolio,
   total,
   isExchangeRateLoading,
+  coinInformationIndex,
 }: Props) {
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-md mb-4">
@@ -44,6 +46,7 @@ export default function Venue({
             tickerId={tickerId}
             tokenBalance={venuePortfolio.tokens[tickerId]}
             isExchangeRateLoading={isExchangeRateLoading}
+            coinInformationIndex={coinInformationIndex}
           />
         ))}
       </div>
