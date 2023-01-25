@@ -6,14 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
     "generate": "next build && next export",
-    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\"",
-    "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- --list-different",
-    "check-types": "tsc",
-    "validate": "npm-run-all --parallel check-types check-format lint build"
+    "fix:format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|ts|tsx|json)\"",
+    "fix:lint": "next lint --fix",
+    "check:lint": "next lint",
+    "check:format": "npm run fix:format -- --list-different",
+    "check:types": "tsc",
+    "validate": "npm-run-all --parallel check:types check:format check:lint build"
   },
   "dependencies": {
     "@next/font": "13.1.5",
