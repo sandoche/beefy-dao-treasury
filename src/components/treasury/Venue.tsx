@@ -2,14 +2,21 @@ import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import VenueToken from "@/components/treasury/VenueToken";
 import getVenueInformation from "@/utilities/getVenueInformation";
 import config from "@/config";
+import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 
 interface Props {
   venueId: string;
   venuePortfolio: ComputedPortfolio["venues"][string];
   total: number;
+  isExchangeRateLoading: boolean;
 }
 
-export default function Venue({ venueId, venuePortfolio, total }: Props) {
+export default function Venue({
+  venueId,
+  venuePortfolio,
+  total,
+  isExchangeRateLoading,
+}: Props) {
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-md mb-4">
       <div className="bg-card px-4 py-5 sm:px-6 border-1">
@@ -20,9 +27,13 @@ export default function Venue({ venueId, venuePortfolio, total }: Props) {
             </h2>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-            <span className="relative inline-flex items-center rounded-md px-4 py-2 text-lg font-medium bg-borders">
-              {total.toFixed(config.decimals)} USD
-            </span>
+            {isExchangeRateLoading ? (
+              <LoadingPlaceholder width="100px" />
+            ) : (
+              <span className="relative inline-flex items-center rounded-md px-4 py-2 md:text-lg font-medium bg-borders">
+                {total.toFixed(config.decimals)} USD
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -32,6 +43,7 @@ export default function Venue({ venueId, venuePortfolio, total }: Props) {
             key={tickerId}
             tickerId={tickerId}
             tokenBalance={venuePortfolio.tokens[tickerId]}
+            isExchangeRateLoading={isExchangeRateLoading}
           />
         ))}
       </div>

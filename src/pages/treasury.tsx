@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 import sharedStrings from "@/locales/en/shared";
 import Navbar from "@/components/shared/Navbar";
 import Container from "@/components/shared/Container";
@@ -12,20 +11,56 @@ import { getConversionRates } from "@/services/coingeckoApiService";
 import config from "@/config";
 import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
 import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
-import { useEffect } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import treasuryStrings from "@/locales/en/treasury";
+import Spinner from "@/components/shared/Spinner";
+import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 
 export default function Treasury() {
-  const { data: balanceState } = useQuery("portfolioBalance", getBalances, {
+  const MySwal = withReactContent(Swal);
+  const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
+
+  const {
+    data: balanceState,
+    isLoading: isPortfolioBalanceLoading,
+    isError,
+  } = useQuery("portfolioBalance", getBalances, {
     refetchInterval: config.pollingIntervalInMs,
+    onSuccess: () => {
+      if (numberOfApiCallsMade < 2) {
+        setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
+      }
+    },
+    onError: () => {
+      MySwal.fire({
+        icon: "error",
+        title: <p>{treasuryStrings.beefyError}</p>,
+      });
+    },
   });
 
-  const { data: exchangeRates, refetch } = useQuery(
+  const {
+    data: exchangeRates,
+    refetch,
+    isLoading: isExchangeRateLoading,
+  } = useQuery(
     "exchangeRates",
     () => getConversionRates(computedPortfolio.tokenIds),
     {
       refetchInterval: config.pollingIntervalInMs,
+      onSuccess: () => {
+        if (numberOfApiCallsMade < 2) {
+          setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
+        }
+      },
+      onError: () => {
+        MySwal.fire({
+          icon: "error",
+          title: <p>{treasuryStrings.coingeckoError}</p>,
+        });
+      },
     }
   );
 
@@ -76,10 +111,10 @@ export default function Treasury() {
   );
 
   useEffect(() => {
-    setTimeout(() => {
+    if (numberOfApiCallsMade >= 2) {
       refetch();
-    }, 1000);
-  }, [refetch]);
+    }
+  }, [numberOfApiCallsMade, refetch]);
 
   return (
     <>
@@ -90,13 +125,26 @@ export default function Treasury() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar>
-        <div className="text-right items-center rounded-md border border-transparent bg-brand px-4 py-2 text-reverse">
-          <p className="text-xl">
-            <strong>{computedPortfolio.total.toFixed(config.decimals)}</strong>{" "}
-            USD
-          </p>
-        </div>
+        {isExchangeRateLoading ? (
+          <LoadingPlaceholder height="20px" width="150px" />
+        ) : (
+          <>
+            <div className="text-right items-center rounded-md border border-transparent bg-brand px-4 py-2 text-reverse">
+              <p className="md:text-xl">
+                <strong>
+                  {computedPortfolio.total.toFixed(config.decimals)}
+                </strong>{" "}
+                USD
+              </p>
+            </div>
+          </>
+        )}
       </Navbar>
+      {isPortfolioBalanceLoading && (
+        <div className="grid h-full place-items-center">
+          <Spinner />
+        </div>
+      )}
       <section>
         <Container>
           <div className="columns-1 lg:columns-2">
@@ -106,6 +154,7 @@ export default function Treasury() {
                 venueId={venueId}
                 venuePortfolio={computedPortfolio.venues[venueId]}
                 total={computedPortfolio.venues[venueId].total}
+                isExchangeRateLoading={isExchangeRateLoading}
               />
             ))}
           </div>
