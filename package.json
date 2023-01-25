@@ -12,7 +12,8 @@
     "check:lint": "next lint",
     "check:format": "npm run fix:format -- --list-different",
     "check:types": "tsc",
-    "validate": "npm-run-all --parallel check:types check:format check:lint build"
+    "validate": "npm-run-all --parallel check:types check:format check:lint build",
+    "fix": "npm-run-all --parallel fix:format fix:lint"
   },
   "dependencies": {
     "@next/font": "13.1.5",
