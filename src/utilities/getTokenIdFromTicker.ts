@@ -1,16 +1,7 @@
-const tickerToId: { [key: string]: string } = {
-  BTC: "bitcoin",
-  USDC: "usd-coin",
-  BUSD: "binance-usd",
-  BIFI: "beefy-finance",
-  USDT: "tether",
-  FTM: "fantom",
-  LTC: "litecoin",
-  USD: "usd",
-};
+import type CoinInformation from "@/types/CoinInformation";
 
-const getTokenIdFromTicker = (ticker: string) => {
-  return tickerToId[ticker] || null;
+const getTokenIdFromTicker = (ticker: string, index: CoinInformation) => {
+  return index[ticker]?.id || null;
 };
 
 export default getTokenIdFromTicker;

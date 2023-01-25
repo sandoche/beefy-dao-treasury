@@ -15,8 +15,12 @@ import withReactContent from "sweetalert2-react-content";
 import treasuryStrings from "@/locales/en/treasury";
 import Spinner from "@/components/shared/Spinner";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import createIndexOfCoinsInformation from "@/utilities/createIndexOfCoinsInformation";
 
-export default function Treasury() {
+export default function Treasury({
+  coinsInformation,
+}): InferGetStaticPropsType<typeof getStaticProps> {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
@@ -78,7 +82,7 @@ export default function Treasury() {
 
       for (const tickerId in venuePortfolio) {
         const tokenBalance = venuePortfolio[tickerId];
-        const tokenId = getTokenIdFromTicker(tickerId);
+        const tokenId = getTokenIdFromTicker(tickerId, coinsInformation);
         const tokenExchangeRate =
           tokenId && exchangeRates && exchangeRates[tokenId]
             ? exchangeRates[tokenId].usd
@@ -152,3 +156,13 @@ export default function Treasury() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const coinsInformation = createIndexOfCoinsInformation();
+
+  return {
+    props: {
+      coinsInformation,
+    },
+  };
+};
