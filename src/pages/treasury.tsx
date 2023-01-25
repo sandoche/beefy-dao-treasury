@@ -123,10 +123,7 @@ export default function Treasury() {
           <>
             <div className="text-right items-center rounded-md border border-transparent bg-brand px-4 py-2 text-reverse">
               <p className="md:text-xl">
-                <strong>
-                  {computedPortfolio.total.toFixed(config.decimals)}
-                </strong>{" "}
-                USD
+                <strong>{computedPortfolio.total.toLocaleString()}</strong> USD
               </p>
             </div>
           </>
