@@ -1,5 +1,5 @@
 const shared = {
-  title: "Beefy Treasury",
+  title: 'Beefy Treasury',
 };
 
 export default shared;

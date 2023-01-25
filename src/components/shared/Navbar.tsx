@@ -1,6 +1,6 @@
-import sharedStrings from "@/locales/en/shared";
-import Container from "@/components/shared/Container";
-import Link from "next/link";
+import sharedStrings from '@/locales/en/shared';
+import Container from '@/components/shared/Container';
+import Link from 'next/link';
 
 interface Props {
   children?: JSX.Element;

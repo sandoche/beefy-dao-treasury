@@ -1,5 +1,5 @@
-import coinInformations from "@/data/coingeckocoins.json";
-import type CoinInformationIndex from "@/types/CoinInformationIndex";
+import coinInformations from '@/data/coingeckocoins.json';
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
 
 const createIndexOfCoinsInformation = (): CoinInformationIndex => {
   const indexOfCoinInformation: CoinInformationIndex = {};
