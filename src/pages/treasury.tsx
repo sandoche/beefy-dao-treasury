@@ -13,10 +13,14 @@ import config from "@/config";
 import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
 import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import treasuryStrings from "@/locales/en/treasury";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Treasury() {
+  const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
   const { data: balanceState } = useQuery("portfolioBalance", getBalances, {
@@ -25,6 +29,12 @@ export default function Treasury() {
       if (numberOfApiCallsMade < 2) {
         setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
       }
+    },
+    onError: () => {
+      MySwal.fire({
+        icon: "error",
+        title: <p>{treasuryStrings.beefyError}</p>,
+      });
     },
   });
 
@@ -37,6 +47,12 @@ export default function Treasury() {
         if (numberOfApiCallsMade < 2) {
           setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
         }
+      },
+      onError: () => {
+        MySwal.fire({
+          icon: "error",
+          title: <p>{treasuryStrings.coingeckoError}</p>,
+        });
       },
     }
   );
