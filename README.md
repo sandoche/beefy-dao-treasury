@@ -10,6 +10,10 @@
 
 ```bash
 npm install
+
+cp .env.dist .env
+# then edit .env
+
 npm run dev
 
 # run static checking
