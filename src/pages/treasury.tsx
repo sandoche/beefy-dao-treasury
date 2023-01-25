@@ -1,5 +1,3 @@
-import Head from "next/head";
-import sharedStrings from "@/locales/en/shared";
 import Navbar from "@/components/shared/Navbar";
 import Container from "@/components/shared/Container";
 import Venue from "@/components/treasury/Venue";
@@ -22,24 +20,24 @@ export default function Treasury() {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
-  const {
-    data: balanceState,
-    isLoading: isPortfolioBalanceLoading,
-    isError,
-  } = useQuery("portfolioBalance", getBalances, {
-    refetchInterval: config.pollingIntervalInMs,
-    onSuccess: () => {
-      if (numberOfApiCallsMade < 2) {
-        setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
-      }
-    },
-    onError: () => {
-      MySwal.fire({
-        icon: "error",
-        title: <p>{treasuryStrings.beefyError}</p>,
-      });
-    },
-  });
+  const { data: balanceState, isLoading: isPortfolioBalanceLoading } = useQuery(
+    "portfolioBalance",
+    getBalances,
+    {
+      refetchInterval: config.pollingIntervalInMs,
+      onSuccess: () => {
+        if (numberOfApiCallsMade < 2) {
+          setNumberOfApiCallsMade(numberOfApiCallsMade + 1);
+        }
+      },
+      onError: () => {
+        MySwal.fire({
+          icon: "error",
+          title: <p>{treasuryStrings.beefyError}</p>,
+        });
+      },
+    }
+  );
 
   const {
     data: exchangeRates,
@@ -118,12 +116,6 @@ export default function Treasury() {
 
   return (
     <>
-      <Head>
-        <title>{sharedStrings.title}</title>
-        <meta name="description" content={sharedStrings.title} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Navbar>
         {isExchangeRateLoading ? (
           <LoadingPlaceholder height="20px" width="150px" />

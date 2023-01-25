@@ -11,9 +11,6 @@ const getConversionRates = async (
     `${API_URL}/simple/price?ids=${stringifiedCoinIds}&vs_currencies=usd`
   );
 
-  // await 5 seconds
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const data = await response.json();
 
   return {
