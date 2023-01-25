@@ -9,6 +9,7 @@ module.exports = {
         lighttext: '#515151',
         card: '#d4ccbd',
         borders: '#a19a8f70',
+        darkborder: '#beb6a9',
       },
     },
   },
