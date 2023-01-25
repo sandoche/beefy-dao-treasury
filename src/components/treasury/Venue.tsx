@@ -9,7 +9,6 @@ interface Props {
   venuePortfolio: ComputedPortfolio["venues"][string];
   total: number;
   isExchangeRateLoading: boolean;
-  coinInformationIndex: CoinInformationIndex;
 }
 
 export default function Venue({
@@ -17,7 +16,6 @@ export default function Venue({
   venuePortfolio,
   total,
   isExchangeRateLoading,
-  coinInformationIndex,
 }: Props) {
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-md mb-4">
@@ -46,7 +44,6 @@ export default function Venue({
             tickerId={tickerId}
             tokenBalance={venuePortfolio.tokens[tickerId]}
             isExchangeRateLoading={isExchangeRateLoading}
-            coinInformationIndex={coinInformationIndex}
           />
         ))}
       </div>

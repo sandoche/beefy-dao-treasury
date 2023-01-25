@@ -54,7 +54,6 @@ export default function Treasury({ coinInformationIndex }: Props) {
                   venuePortfolio={computedPortfolio.venues[venueId]}
                   total={computedPortfolio.venues[venueId].total}
                   isExchangeRateLoading={isExchangeRateLoading}
-                  coinInformationIndex={coinInformationIndex}
                 />
               ))}
             </div>

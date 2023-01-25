@@ -2,20 +2,22 @@ import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import getTickerInformation from "@/utilities/getTickerInformation";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 import CoinInformationIndex from "@/types/CoinInformationIndex";
+import { useContext } from "react";
+import BeefyContext from "@/context/BeefyContext";
 
 interface Props {
   tickerId: string;
   tokenBalance: ComputedPortfolio["venues"][string]["tokens"][string];
   isExchangeRateLoading: boolean;
-  coinInformationIndex: CoinInformationIndex;
 }
 
 export default function VenueToken({
   tickerId,
   tokenBalance,
   isExchangeRateLoading,
-  coinInformationIndex,
 }: Props) {
+  const { coinInformationIndex } = useContext(BeefyContext);
+
   return (
     <div className="border-t bg-card px-4 py-5 sm:px-6 border-1 border-borders flex justify-between items-center">
       <h3 className="text-lg">
