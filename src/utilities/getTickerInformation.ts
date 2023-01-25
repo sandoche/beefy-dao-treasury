@@ -1,8 +1,8 @@
-import type CoinInformationIndex from "@/types/CoinInformationIndex";
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
 
 const getTickerInformation = (
   ticker: string,
-  index: CoinInformationIndex
+  index: CoinInformationIndex,
 ): CoinInformationIndex[string] => {
   return index[ticker] || { name: ticker };
 };

@@ -1,11 +1,11 @@
-import type ComputedPortfolio from "@/types/ComputedPortfolio";
-import VenueToken from "@/components/treasury/VenueToken";
-import getVenueInformation from "@/utilities/getVenueInformation";
-import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
+import type ComputedPortfolio from '@/types/ComputedPortfolio';
+import VenueToken from '@/components/treasury/VenueToken';
+import getVenueInformation from '@/utilities/getVenueInformation';
+import LoadingPlaceholder from '@/components/shared/LoadingPlaceholder';
 
 interface Props {
   venueId: string;
-  venuePortfolio: ComputedPortfolio["venues"][string];
+  venuePortfolio: ComputedPortfolio['venues'][string];
   total: number;
   isExchangeRateLoading: boolean;
 }

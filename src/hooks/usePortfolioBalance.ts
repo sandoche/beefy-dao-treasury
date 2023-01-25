@@ -1,23 +1,23 @@
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import { useQuery } from "react-query";
-import { getConversionRates } from "@/services/coingeckoApiService";
-import config from "@/config";
-import { getBalances } from "@/services/beefyApiService";
-import treasuryStrings from "@/locales/en/treasury";
-import { useEffect, useState } from "react";
-import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
-import type ComputedPortfolio from "@/types/ComputedPortfolio";
-import type CoinInformationIndex from "@/types/CoinInformationIndex";
-import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
-import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useQuery } from 'react-query';
+import { getConversionRates } from '@/services/coingeckoApiService';
+import config from '@/config';
+import { getBalances } from '@/services/beefyApiService';
+import treasuryStrings from '@/locales/en/treasury';
+import { useEffect, useState } from 'react';
+import type BeefyBalancesResponse from '@/types/BeefyBalancesResponse';
+import type ComputedPortfolio from '@/types/ComputedPortfolio';
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
+import getTokenIdFromTicker from '@/utilities/getTokenIdFromTicker';
+import type CoingeckoConversionRatesResponse from '@/types/CoingeckoConversionRatesResponse';
 
 const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
   const { data: balanceState, isLoading: isPortfolioBalanceLoading } = useQuery(
-    "portfolioBalance",
+    'portfolioBalance',
     getBalances,
     {
       refetchInterval: config.pollingIntervalInMs,
@@ -28,11 +28,11 @@ const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
       },
       onError: () => {
         MySwal.fire({
-          icon: "error",
+          icon: 'error',
           title: treasuryStrings.beefyError,
         });
       },
-    }
+    },
   );
 
   const {
@@ -40,7 +40,7 @@ const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
     refetch,
     isLoading: isExchangeRateLoading,
   } = useQuery(
-    "exchangeRates",
+    'exchangeRates',
     () => getConversionRates(computedPortfolio.tokenIds),
     {
       refetchInterval: config.pollingIntervalInMs,
@@ -51,16 +51,16 @@ const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
       },
       onError: () => {
         MySwal.fire({
-          icon: "error",
+          icon: 'error',
           title: treasuryStrings.coingeckoError,
         });
       },
-    }
+    },
   );
 
   const computePortfolioToGetBalances = (
     balanceState: BeefyBalancesResponse | undefined,
-    exchangeRates: CoingeckoConversionRatesResponse | undefined
+    exchangeRates: CoingeckoConversionRatesResponse | undefined,
   ): ComputedPortfolio => {
     const portfolio: ComputedPortfolio = {
       total: 0,
@@ -101,7 +101,7 @@ const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
 
   const computedPortfolio = computePortfolioToGetBalances(
     balanceState,
-    exchangeRates
+    exchangeRates,
   );
 
   useEffect(() => {

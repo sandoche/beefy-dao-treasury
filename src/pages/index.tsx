@@ -1,7 +1,7 @@
-import Navbar from "@/components/shared/Navbar";
-import Container from "@/components/shared/Container";
-import homeStrings from "@/locales/en/home";
-import Link from "next/link";
+import Navbar from '@/components/shared/Navbar';
+import Container from '@/components/shared/Container';
+import homeStrings from '@/locales/en/home';
+import Link from 'next/link';
 
 export default function Home() {
   return (

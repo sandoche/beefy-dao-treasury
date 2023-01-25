@@ -1,4 +1,4 @@
-import PageHead from "@/components/shared/PageHead";
+import PageHead from '@/components/shared/PageHead';
 
 interface Props {
   children: JSX.Element;

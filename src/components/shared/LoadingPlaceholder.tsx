@@ -3,7 +3,7 @@ interface Props {
   width?: string;
 }
 
-export default function LoadingPlaceholder({ height = "", width = "" }: Props) {
+export default function LoadingPlaceholder({ height = '', width = '' }: Props) {
   return (
     <div
       className="animate-pulse w-full h-3 bg-borders rounded-full"

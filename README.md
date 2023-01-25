@@ -11,6 +11,9 @@
 ```bash
 npm install
 npm run dev
+
+# run static checking
+npm run validate
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

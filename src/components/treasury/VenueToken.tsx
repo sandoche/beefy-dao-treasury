@@ -1,12 +1,12 @@
-import type ComputedPortfolio from "@/types/ComputedPortfolio";
-import getTickerInformation from "@/utilities/getTickerInformation";
-import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
-import { useContext } from "react";
-import BeefyContext from "@/context/BeefyContext";
+import type ComputedPortfolio from '@/types/ComputedPortfolio';
+import getTickerInformation from '@/utilities/getTickerInformation';
+import LoadingPlaceholder from '@/components/shared/LoadingPlaceholder';
+import { useContext } from 'react';
+import BeefyContext from '@/context/BeefyContext';
 
 interface Props {
   tickerId: string;
-  tokenBalance: ComputedPortfolio["venues"][string]["tokens"][string];
+  tokenBalance: ComputedPortfolio['venues'][string]['tokens'][string];
   isExchangeRateLoading: boolean;
 }
 
