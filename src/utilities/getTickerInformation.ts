@@ -1,28 +1,10 @@
-import type TokenInformation from "@/types/TokenInformation";
+import type CoinInformationIndex from "@/types/CoinInformationIndex";
 
-const tickers: { [key: string]: TokenInformation } = {
-  USDT: {
-    name: "Tether",
-  },
-  BUSD: {
-    name: "Binance USD",
-  },
-  USDC: {
-    name: "USD Coin",
-  },
-  BIFI: {
-    name: "Beefy Finance",
-  },
-  FTM: {
-    name: "Fantom",
-  },
-  LTC: {
-    name: "Litecoin",
-  },
-};
-
-const getTickerInformation = (ticker: string): TokenInformation => {
-  return tickers[ticker] || { name: ticker };
+const getTickerInformation = (
+  ticker: string,
+  index: CoinInformationIndex
+): CoinInformationIndex[string] => {
+  return index[ticker] || { name: ticker };
 };
 
 export default getTickerInformation;

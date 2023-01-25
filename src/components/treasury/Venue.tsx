@@ -1,7 +1,6 @@
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
 import VenueToken from "@/components/treasury/VenueToken";
 import getVenueInformation from "@/utilities/getVenueInformation";
-import config from "@/config";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 
 interface Props {
