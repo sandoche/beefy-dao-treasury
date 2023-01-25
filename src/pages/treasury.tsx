@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 import sharedStrings from "@/locales/en/shared";
 import Navbar from "@/components/shared/Navbar";
 import Container from "@/components/shared/Container";
@@ -16,8 +15,6 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import treasuryStrings from "@/locales/en/treasury";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Treasury() {
   const MySwal = withReactContent(Swal);
