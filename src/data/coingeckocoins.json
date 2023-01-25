@@ -99874,5 +99874,10 @@
       "arbitrum-one": "0x377c6e37633e390aef9afb4f5e0b16689351eed4",
       "binance-smart-chain": "0x377c6e37633e390aef9afb4f5e0b16689351eed4"
     }
+  },
+  {
+    "id": "usd",
+    "symbol": "USD",
+    "name": "US Dollar"
   }
 ]
