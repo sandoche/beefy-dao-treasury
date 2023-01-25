@@ -5,11 +5,11 @@ import Venue from "@/components/treasury/Venue";
 import Spinner from "@/components/shared/Spinner";
 import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
 import type CoinInformationIndex from "@/types/CoinInformationIndex";
-import { useContext } from "react";
-import BeefyContext from "@/context/BeefyContext";
+
 import BeefyDataProvider from "@/context/BeefyDataProvider";
 import type { GetStaticProps } from "next";
 import createIndexOfCoinsInformation from "@/utilities/createIndexOfCoinsInformation";
+import usePortfolioBalance from "@/hooks/usePortfolioBalance";
 
 type Props = {
   coinInformationIndex: CoinInformationIndex;
@@ -17,10 +17,10 @@ type Props = {
 
 export default function Treasury({ coinInformationIndex }: Props) {
   const {
+    isExchangeRateLoading,
     computedPortfolio,
     isPortfolioBalanceLoading,
-    isExchangeRateLoading,
-  } = useContext(BeefyContext);
+  } = usePortfolioBalance();
 
   return (
     <BeefyDataProvider coinInformationIndex={coinInformationIndex}>
