@@ -1,11 +1,9 @@
 import Navbar from '@/components/shared/Navbar';
 import Container from '@/components/shared/Container';
 import Venue from '@/components/treasury/Venue';
-
 import Spinner from '@/components/shared/Spinner';
 import LoadingPlaceholder from '@/components/shared/LoadingPlaceholder';
 import type CoinInformationIndex from '@/types/CoinInformationIndex';
-
 import BeefyDataProvider from '@/context/BeefyDataProvider';
 import type { GetStaticProps } from 'next';
 import createIndexOfCoinsInformation from '@/utilities/createIndexOfCoinsInformation';
@@ -64,7 +62,7 @@ export default function Treasury({ coinInformationIndex }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   console.log('getStaticProps called');
 
   const coinInformationIndex = createIndexOfCoinsInformation();
