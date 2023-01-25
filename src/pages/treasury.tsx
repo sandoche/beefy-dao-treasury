@@ -1,15 +1,14 @@
-import Navbar from "@/components/shared/Navbar";
-import Container from "@/components/shared/Container";
-import Venue from "@/components/treasury/Venue";
+import type { GetStaticProps } from 'next';
 
-import Spinner from "@/components/shared/Spinner";
-import LoadingPlaceholder from "@/components/shared/LoadingPlaceholder";
-import type CoinInformationIndex from "@/types/CoinInformationIndex";
-
-import BeefyDataProvider from "@/context/BeefyDataProvider";
-import type { GetStaticProps } from "next";
-import createIndexOfCoinsInformation from "@/utilities/createIndexOfCoinsInformation";
-import usePortfolioBalance from "@/hooks/usePortfolioBalance";
+import Container from '@/components/shared/Container';
+import LoadingPlaceholder from '@/components/shared/LoadingPlaceholder';
+import Navbar from '@/components/shared/Navbar';
+import Spinner from '@/components/shared/Spinner';
+import Venue from '@/components/treasury/Venue';
+import BeefyDataProvider from '@/context/BeefyDataProvider';
+import usePortfolioBalance from '@/hooks/usePortfolioBalance';
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
+import createIndexOfCoinsInformation from '@/utilities/createIndexOfCoinsInformation';
 
 type Props = {
   coinInformationIndex: CoinInformationIndex;
@@ -32,7 +31,7 @@ export default function Treasury({ coinInformationIndex }: Props) {
             <>
               <div className="text-right items-center rounded-md border border-transparent bg-brand px-4 py-2 text-reverse">
                 <p className="md:text-xl">
-                  <strong>{computedPortfolio.total.toLocaleString()}</strong>{" "}
+                  <strong>{computedPortfolio.total.toLocaleString()}</strong>{' '}
                   USD
                 </p>
               </div>
@@ -64,8 +63,8 @@ export default function Treasury({ coinInformationIndex }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  console.log("getStaticProps called");
+export const getStaticProps: GetStaticProps = async () => {
+  console.log('getStaticProps called');
 
   const coinInformationIndex = createIndexOfCoinsInformation();
 

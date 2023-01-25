@@ -10,7 +10,33 @@
 
 ```bash
 npm install
+
+cp .env.dist .env
+# then edit .env
+
 npm run dev
+
+# run static checking
+npm run validate
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Troubleshooting
+
+- If the API returns CORS issues, I invite you to install a no-cors browser extension
+- If venues don't have a proper name please edit `src/utilities/getVenueInformation.ts` and add the missing venues to the `venues`.
+- Icons goes to `public/icons` and then needs to be linked in `src/utilities/getVenueInformation.ts`.
+- If the tokens names are not displayed properly, edit `src/data/coingeckocoins.json` which is pulled from [here](https://api.coingecko.com/api/v3/coins/list). Note that some tickers are repeated so it requires some update to make it work properly. Also make sure that the array contains this entry:
+
+```json
+{
+  "id": "usd",
+  "symbol": "USD",
+  "name": "US Dollar"
+}
+```
+
+## Screenshot
+
+![Screenshot](./docs/screenshot.png)

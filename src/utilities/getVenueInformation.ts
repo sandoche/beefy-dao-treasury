@@ -1,17 +1,20 @@
-import type VenueInformation from "@/types/VenueInformation";
+import type VenueInformation from '@/types/VenueInformation';
 
 const venues: { [key: string]: VenueInformation } = {
   binance: {
-    name: "Binance",
+    name: 'Binance',
+    icon: 'binance.svg',
   },
   felix: {
-    name: "Felix",
+    name: 'Felix',
   },
   cryptocom: {
-    name: "Crypto.com",
+    name: 'Crypto.com',
+    icon: 'crypto.png',
   },
   bitrue: {
-    name: "Bitrue",
+    name: 'Bitrue',
+    icon: 'bitrue.png',
   },
 };
 

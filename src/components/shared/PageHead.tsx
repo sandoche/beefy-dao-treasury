@@ -1,5 +1,6 @@
-import Head from "next/head";
-import sharedStrings from "@/locales/en/shared";
+import Head from 'next/head';
+
+import sharedStrings from '@/locales/en/shared';
 
 export default function PageHead() {
   return (
