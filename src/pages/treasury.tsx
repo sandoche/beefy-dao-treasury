@@ -15,12 +15,17 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import treasuryStrings from "@/locales/en/treasury";
+import Spinner from "@/components/shared/Spinner";
 
 export default function Treasury() {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
 
-  const { data: balanceState } = useQuery("portfolioBalance", getBalances, {
+  const {
+    data: balanceState,
+    isLoading: isPortfolioBalanceLoading,
+    isError,
+  } = useQuery("portfolioBalance", getBalances, {
     refetchInterval: config.pollingIntervalInMs,
     onSuccess: () => {
       if (numberOfApiCallsMade < 2) {
@@ -35,7 +40,11 @@ export default function Treasury() {
     },
   });
 
-  const { data: exchangeRates, refetch } = useQuery(
+  const {
+    data: exchangeRates,
+    refetch,
+    isLoading: isExchangeRateLoading,
+  } = useQuery(
     "exchangeRates",
     () => getConversionRates(computedPortfolio.tokenIds),
     {
@@ -122,6 +131,11 @@ export default function Treasury() {
           </p>
         </div>
       </Navbar>
+      {isPortfolioBalanceLoading && (
+        <div className="grid h-full place-items-center">
+          <Spinner />
+        </div>
+      )}
       <section>
         <Container>
           <div className="columns-1 lg:columns-2">
