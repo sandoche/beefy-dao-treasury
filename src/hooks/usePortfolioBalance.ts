@@ -1,16 +1,17 @@
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { useQuery } from 'react-query';
-import { getConversionRates } from '@/services/coingeckoApiService';
+
 import config from '@/config';
-import { getBalances } from '@/services/beefyApiService';
 import treasuryStrings from '@/locales/en/treasury';
-import { useEffect, useState } from 'react';
+import { getBalances } from '@/services/beefyApiService';
+import { getConversionRates } from '@/services/coingeckoApiService';
 import type BeefyBalancesResponse from '@/types/BeefyBalancesResponse';
-import type ComputedPortfolio from '@/types/ComputedPortfolio';
-import type CoinInformationIndex from '@/types/CoinInformationIndex';
-import getTokenIdFromTicker from '@/utilities/getTokenIdFromTicker';
 import type CoingeckoConversionRatesResponse from '@/types/CoingeckoConversionRatesResponse';
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
+import type ComputedPortfolio from '@/types/ComputedPortfolio';
+import getTokenIdFromTicker from '@/utilities/getTokenIdFromTicker';
 
 const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
   const MySwal = withReactContent(Swal);

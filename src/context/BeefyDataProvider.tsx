@@ -1,6 +1,7 @@
+import type CoinInformationIndex from '@/types/CoinInformationIndex';
+
 import BeefyContext from './BeefyContext';
 import type BeefyContextInterface from './BeefyContextInterface';
-import type CoinInformationIndex from '@/types/CoinInformationIndex';
 
 interface Props {
   children: JSX.Element;

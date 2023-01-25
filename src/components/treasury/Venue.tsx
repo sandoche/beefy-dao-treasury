@@ -1,7 +1,7 @@
-import type ComputedPortfolio from '@/types/ComputedPortfolio';
-import VenueToken from '@/components/treasury/VenueToken';
-import getVenueInformation from '@/utilities/getVenueInformation';
 import LoadingPlaceholder from '@/components/shared/LoadingPlaceholder';
+import VenueToken from '@/components/treasury/VenueToken';
+import type ComputedPortfolio from '@/types/ComputedPortfolio';
+import getVenueInformation from '@/utilities/getVenueInformation';
 
 interface Props {
   venueId: string;
