@@ -20,7 +20,7 @@ export default function Treasury({ coinInformationIndex }: Props) {
     isExchangeRateLoading,
     computedPortfolio,
     isPortfolioBalanceLoading,
-  } = usePortfolioBalance();
+  } = usePortfolioBalance(coinInformationIndex);
 
   return (
     <BeefyDataProvider coinInformationIndex={coinInformationIndex}>

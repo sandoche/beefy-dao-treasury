@@ -5,18 +5,16 @@ import { getConversionRates } from "@/services/coingeckoApiService";
 import config from "@/config";
 import { getBalances } from "@/services/beefyApiService";
 import treasuryStrings from "@/locales/en/treasury";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type BeefyBalancesResponse from "@/types/BeefyBalancesResponse";
 import type ComputedPortfolio from "@/types/ComputedPortfolio";
-
+import type CoinInformationIndex from "@/types/CoinInformationIndex";
 import getTokenIdFromTicker from "@/utilities/getTokenIdFromTicker";
 import type CoingeckoConversionRatesResponse from "@/types/CoingeckoConversionRatesResponse";
-import BeefyContext from "@/context/BeefyContext";
 
-const usePortfolioBalance = () => {
+const usePortfolioBalance = (coinInformationIndex: CoinInformationIndex) => {
   const MySwal = withReactContent(Swal);
   const [numberOfApiCallsMade, setNumberOfApiCallsMade] = useState<number>(0);
-  const { coinInformationIndex } = useContext(BeefyContext);
 
   const { data: balanceState, isLoading: isPortfolioBalanceLoading } = useQuery(
     "portfolioBalance",
