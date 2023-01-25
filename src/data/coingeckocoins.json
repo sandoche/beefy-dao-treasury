@@ -9925,15 +9925,6 @@
     }
   },
   {
-    "id": "bifi",
-    "symbol": "bifi",
-    "name": "BiFi",
-    "platforms": {
-      "ethereum": "0x2791bfd60d232150bff86b39b7146c0eaaa2ba81",
-      "fantom": "0xad260f380c9a30b1d60e4548a75010ede630b665"
-    }
-  },
-  {
     "id": "bifrost",
     "symbol": "bfc",
     "name": "Bifrost",
@@ -33372,14 +33363,6 @@
     "name": "FitMax",
     "platforms": {
       "binance-smart-chain": "0x41d52514f6ea0c90993ad36152072a144c12bdc7"
-    }
-  },
-  {
-    "id": "fitmin",
-    "symbol": "ftm",
-    "name": "Fitmin",
-    "platforms": {
-      "binance-smart-chain": "0xa4b6e76bba7413b9b4bd83f4e3aa63cc181d869f"
     }
   },
   {
@@ -90294,14 +90277,6 @@
     }
   },
   {
-    "id": "uniswap-state-dollar",
-    "symbol": "usd",
-    "name": "unified Stable Dollar",
-    "platforms": {
-      "ethereum": "0x44086035439e676c02d411880fccb9837ce37c57"
-    }
-  },
-  {
     "id": "uniswap-wormhole",
     "symbol": "uni",
     "name": "Uniswap (Wormhole)",
@@ -90885,17 +90860,6 @@
     "platforms": {
       "ethereum": "0xc6dddb5bc6e61e0841c54f3e723ae1f3a807260b",
       "binance-smart-chain": "0xc6dddb5bc6e61e0841c54f3e723ae1f3a807260b"
-    }
-  },
-  {
-    "id": "usd",
-    "symbol": "usd+",
-    "name": "USD+",
-    "platforms": {
-      "polygon-pos": "0x236eec6359fb44cce8f97e99387aa7f8cd5cde1f",
-      "optimistic-ethereum": "0x73cb180bf0521828d8849bc8cf2b920918e23032",
-      "avalanche": "0xe80772eaf6e2e18b651f160bc9158b2a5cafca65",
-      "binance-smart-chain": "0xe80772eaf6e2e18b651f160bc9158b2a5cafca65"
     }
   },
   {
