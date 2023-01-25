@@ -20,7 +20,7 @@ export default function Venue({ venueId, venuePortfolio, total }: Props) {
             </h2>
           </div>
           <div className="ml-4 mt-2 flex-shrink-0">
-            <span className="relative inline-flex items-center rounded-md px-4 py-2 text-lg font-medium bg-borders">
+            <span className="relative inline-flex items-center rounded-md px-4 py-2 md:text-lg font-medium bg-borders">
               {total.toFixed(config.decimals)} USD
             </span>
           </div>
